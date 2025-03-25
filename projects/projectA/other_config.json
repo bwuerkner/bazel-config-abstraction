@@ -1,0 +1,19 @@
+{
+    "entries": [
+        {
+            "id": 1,
+            "name": "Entry One",
+            "description": "This is the first entry in the dataset."
+        },
+        {
+            "id": 2,
+            "name": "Entry Two",
+            "description": "This is the second entry in the dataset."
+        },
+        {
+            "id": 3,
+            "name": "Entry Three",
+            "description": "This is the third entry in the dataset."
+        }
+    ]
+}

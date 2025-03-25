@@ -1,0 +1,15 @@
+load("@aspect_bazel_lib//lib:transitions.bzl", "platform_transition_filegroup")
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "config_for_service1",
+    srcs = ["configfile.txt"],
+)
+
+platform_transition_filegroup(
+    name = "final_output",
+    srcs = [
+        "//product/service1:create_service_1",
+    ],
+    target_platform = "//configs/platforms:ProjectB",
+)

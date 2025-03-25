@@ -6,4 +6,4 @@ module(
 )
 
 bazel_dep(name = "rules_pkg", version = "1.0.1")
-
+bazel_dep(name = "aspect_bazel_lib", version = "2.14.0")

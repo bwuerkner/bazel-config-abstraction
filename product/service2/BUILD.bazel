@@ -1,0 +1,9 @@
+genrule(
+    name = "create_service_2",
+    srcs = [
+        "//configs:config_for_service2",
+    ],
+    outs = ["service2_config.txt"],
+    cmd = "echo Service2 > $@ && cat $(location //configs:config_for_service2) >> $@",
+    visibility = ["//visibility:public"],
+)

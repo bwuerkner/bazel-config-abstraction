@@ -1,0 +1,32 @@
+package(default_visibility = ["//visibility:public"])
+
+# List of tuples to match the constraints to locations in the projects folder
+known_projects = [
+    ("ProjectA", "//projects/projectA"),
+    ("ProjectB", "//projects/projectB"),
+    ("ProjectC", "//projects/projectC"),
+]
+
+active_projects = [
+    "ProjectA",
+    "ProjectB",
+    "ProjectC",
+]
+
+filegroup(
+    name = "config_for_service1",
+    srcs = select({
+        "//configs/constraints:{name}".format(name = name): ["{path}:config_for_service1".format(path = path)]
+        for name, path in known_projects
+        if name in active_projects
+    }),
+)
+
+filegroup(
+    name = "config_for_service2",
+    srcs = select({
+        "//configs/constraints:{name}".format(name = name): ["{path}:config_for_service2".format(path = path)]
+        for name, path in known_projects
+        if name in active_projects
+    }),
+)
