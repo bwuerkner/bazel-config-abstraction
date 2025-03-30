@@ -1,0 +1,70 @@
+load("@aspect_bazel_lib//lib:transitions.bzl", "platform_transition_filegroup")
+load("@rules_pkg//pkg:mappings.bzl", "pkg_filegroup", "pkg_files", "strip_prefix")
+load("@rules_pkg//pkg:zip.bzl", "pkg_zip")
+
+pkg_files(
+    name = "input_service_1",
+    srcs = [
+        "//projects/projectA:config_for_service1",
+    ],
+    strip_prefix = strip_prefix.from_pkg(),
+)
+
+pkg_files(
+    name = "input_service_2",
+    srcs = [
+        "//projects/projectA:config_for_service2",
+    ],
+    strip_prefix = strip_prefix.from_pkg(),
+)
+
+pkg_files(
+    name = "output_service_1",
+    srcs = [
+        "//product/service1:create_service_1",
+    ],
+    strip_prefix = strip_prefix.from_pkg(),
+)
+
+pkg_files(
+    name = "output_service_2",
+    srcs = [
+        "//product/service2:create_service_2",
+    ],
+    strip_prefix = strip_prefix.from_pkg(),
+)
+
+pkg_filegroup(
+    name = "Service1",
+    srcs = [
+        ":input_service_1",
+        ":output_service_1",
+    ],
+    prefix = "Service1",
+)
+
+pkg_filegroup(
+    name = "Service2",
+    srcs = [
+        ":input_service_2",
+        ":output_service_2",
+    ],
+    prefix = "Service2",
+)
+
+pkg_zip(
+    name = "final_internal",
+    srcs = [
+        ":Service1",
+        ":Service2",
+    ],
+    out = "final.zip",
+)
+
+platform_transition_filegroup(
+    name = "final",
+    srcs = [
+        ":final_internal",
+    ],
+    target_platform = "//configs/platforms:ProjectA",
+)

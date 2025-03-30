@@ -17,4 +17,22 @@ It could even happen that the project decides to write it's own transformer from
 
 # Handling of output structure creation using rules_pkg
 
+Now since we have multiple projects using different subsets of services the different projects also want to structure the output differently.
+This can be achieved using the excellent `rules_pkg` with `pkg_files` and `pkg_filegroup`.
+This is already outlined in the [examples provided by the package](examples/rich_structure/README.md).
+
+In this repository I've opted to create a small example that fits within the rest of the examples.
+
+Project A wants a stucture grouped by services:
+- Service1/input
+- Service1/output
+- Service2/input
+- Service2/output
+
+Project C wants a structure gruped by I/O:
+- inputs/Service1
+- inputs/Service2
+- outputs/Service1
+- outputs/Service2
+
 # Handling of (json based, high level) project configurations at action graph creation time
