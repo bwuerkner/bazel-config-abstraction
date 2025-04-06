@@ -3,20 +3,20 @@ package(default_visibility = ["//visibility:public"])
 platform(
     name = "ProjectA",
     constraint_values = [
-        "//configs/constraints:ProjectA",
+        "//configs/constraints:projectA",
     ],
 )
 
 platform(
     name = "ProjectB",
     constraint_values = [
-        "//configs/constraints:ProjectB",
+        "//configs/constraints:projectB",
     ],
 )
 
 platform(
     name = "ProjectC",
     constraint_values = [
-        "//configs/constraints:ProjectC",
+        "//configs/constraints:projectC",
     ],
 )

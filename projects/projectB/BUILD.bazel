@@ -1,4 +1,5 @@
 load("@aspect_bazel_lib//lib:transitions.bzl", "platform_transition_filegroup")
+
 package(default_visibility = ["//visibility:public"])
 
 filegroup(
