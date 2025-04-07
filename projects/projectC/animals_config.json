@@ -1,0 +1,11 @@
+{
+    "animals": [
+        {
+            "species": "lion",
+            "type": "carnivore",
+            "names": [
+                "Simba"
+            ]
+        }
+    ]
+}

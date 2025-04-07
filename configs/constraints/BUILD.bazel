@@ -4,16 +4,16 @@ package(default_visibility = ["//visibility:public"])
 constraint_setting(name = "project_variant")
 
 constraint_value(
-    name = "ProjectA",
+    name = "projectA",
     constraint_setting = ":project_variant",
 )
 
 constraint_value(
-    name = "ProjectB",
+    name = "projectB",
     constraint_setting = ":project_variant",
 )
 
 constraint_value(
-    name = "ProjectC",
+    name = "projectC",
     constraint_setting = ":project_variant",
 )

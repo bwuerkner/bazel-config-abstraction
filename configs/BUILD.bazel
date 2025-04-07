@@ -2,15 +2,15 @@ package(default_visibility = ["//visibility:public"])
 
 # List of tuples to match the constraints to locations in the projects folder
 known_projects = [
-    ("ProjectA", "//projects/projectA"),
-    ("ProjectB", "//projects/projectB"),
-    ("ProjectC", "//projects/projectC"),
+    ("projectA", "//projects/projectA"),
+    ("projectB", "//projects/projectB"),
+    ("projectC", "//projects/projectC"),
 ]
 
 active_projects = [
-    "ProjectA",
-    "ProjectB",
-    "ProjectC",
+    "projectA",
+    "projectB",
+    "projectC",
 ]
 
 filegroup(
