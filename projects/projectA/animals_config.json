@@ -1,0 +1,33 @@
+{
+    "animals": [
+        {
+            "species": "lion",
+            "type": "carnivore",
+            "names": [
+                "Sandy",
+                "Jack"
+            ]
+        },
+        {
+            "species": "shark",
+            "type": "carnivore",
+            "names": [
+                "Peter"
+            ]
+        },
+        {
+            "species": "clown fish",
+            "type": "omnivore",
+            "names": [
+                "Paul"
+            ]
+        },
+        {
+            "species": "giraffe",
+            "type": "herbivore",
+            "names": [
+                "Mary"
+            ]
+        }
+    ]
+}

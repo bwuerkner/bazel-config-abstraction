@@ -1,0 +1,19 @@
+{
+    "animals": [
+        {
+            "species": "lion",
+            "type": "carnivore",
+            "names": [
+                "Sandy",
+                "Jack"
+            ]
+        },
+        {
+            "species": "elephant",
+            "type": "herbivore",
+            "names": [
+                "Dumbo"
+            ]
+        }
+    ]
+}
