@@ -1,7 +1,7 @@
 # bazel-config-abstraction
-A set of ideas how one can perform config abstraction using BAZEL
+A set of ideas how one can perform config abstraction using [BAZEL](https://bazel.build)
 
-# Abstract handling of identical type different content input files for different projects
+# Abstract handling of "identical type but different content" input files for different projects
 
 Imagine the following scenario:
 - A set of Services are developed by independent teams.
@@ -10,7 +10,7 @@ Imagine the following scenario:
 - The inputs to these scripts are clearly defined configuration files with a schema owned by the service team.
 - The selection of which services are active for a project is on the project configuration side.
 
-A way to abstract this in BAZEL is to define a `configs` folder with a `Build.bazel` file that performs no other function than to apply select statements to filegroups coming from individual projects (their input files) and provide a common name (`//configs:name`) for them to be used by the services.
+A way to abstract this in BAZEL is to define a `configs` folder with a `BUILD.bazel` file that performs no other function than to apply select statements to filegroups coming from individual projects (their input files) and provide a common name (`//configs:name`) for them to be used by the services.
 
 It is then in the responsibility of the project to decide how the file will be provided to the service.
 It could even happen that the project decides to write it's own transformer from some (maybe provided by a proprietary, external script) format to the expected format of the service and reference this output in the `configs/BUILD.bazel` file.
@@ -36,3 +36,62 @@ Project C wants a structure gruped by I/O:
 - outputs/Service2
 
 # Handling of (json based, high level) project configurations at action graph creation time
+
+This concept has a bit of a performance penalty.
+
+Taking the concept of project specific configuration even further we now imagine that certain things need to be dynamically modifyable without touching BUILD.bazel files.
+What exactly this is may depend totally on the project so I'll use Animals to illustrate the idea.
+
+A person configuring the system, that has no knowledge of bazel whatsoever and may not touch the files, is entrusted with the following json structure to update
+
+```json
+{
+    "animals": [
+        {
+            "species": "lion",
+            "type": "carnivore",
+            "names": [
+                "Sandy",
+                "Jack"
+            ]
+        },
+        {
+            "species": "shark",
+            "type": "carnivore",
+            "names": [
+                "Peter"
+            ]
+        },
+        {
+            "species": "clown fish",
+            "type": "omnivore",
+            "names": [
+                "Paul",
+            ]
+        },
+        {
+            "species": "giraffe",
+            "type": "herbivore",
+            "names": [
+                "Mary",
+            ]
+        }
+    ]
+}
+```
+
+and saves this as `animal_config.json` in the specific `projects/<name of project>` folder.
+
+If we now assume that there are certain rules implemented in Bazel that shall only be executed for carnivores but shall be executed per carnivore we now would like to know the values in this JSON at action graph generation time.
+
+To achieve this we can utilize a repo_rule that looks for `animal_config.json` files in the subfolders of the `projects` folder and loads them for the specific projects.
+
+We can then utilize the custom `multiply_rule` macro to duplicate a given rule and replace the placeholders in it's definition with the values from the json.
+
+To test this out in this workspace use any of the following commands:
+
+`bazel build product/multiplyable_service:only_carnivorea --platforms=//configs/platforms:ProjectA`
+
+`bazel build product/multiplyable_service:all_animals --platforms=//configs/platforms:ProjectA`
+
+`bazel build product/multiplyable_service:all_names --platforms=//configs/platforms:ProjectA`
