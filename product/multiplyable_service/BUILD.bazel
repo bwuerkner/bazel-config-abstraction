@@ -1,0 +1,37 @@
+load("//multiply:multiply_rule.bzl", "multiply_existing_target")
+
+genrule(
+    name = "species_based_service",
+    outs = ["{name}_{project}_{species}.txt"],
+    cmd = "echo {species} > '$@' ",
+    visibility = ["//visibility:public"],
+)
+
+multiply_existing_target(
+    name = "all_animals",
+    target = "species_based_service",
+)
+
+multiply_existing_target(
+    name = "only_carnivorea",
+    conditions = [
+        {
+            "type": "carnivore",
+        },
+    ],
+    iterator = "species",
+    target = "species_based_service",
+)
+
+genrule(
+    name = "name_based_service",
+    outs = ["{name}_{project}_{species}_{animal_name}.txt"],
+    cmd = "echo {species} {animal_name} > '$@' ",
+    visibility = ["//visibility:public"],
+)
+
+multiply_existing_target(
+    name = "all_names",
+    iterator = "name",
+    target = "name_based_service",
+)
