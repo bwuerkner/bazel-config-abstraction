@@ -5,12 +5,15 @@ entries=(
     "bazel build projects/projectA/package:final"
     "Run the transitioned final output of project C: "
     "bazel build projects/projectC/package:final"
-    "Run the multiplyable service with the 'only_carnivorea' target: "
-    "bazel build product/multiplyable_service:only_carnivorea --platforms=//configs/platforms:ProjectA"
     "Run the multiplyable service with the 'all_animals' target: "
     "bazel build product/multiplyable_service:all_animals --platforms=//configs/platforms:ProjectA"
+    "Run the multiplyable service with the 'only_carnivors' target: "
+    "bazel build product/multiplyable_service:only_carnivors --platforms=//configs/platforms:ProjectA"
     "Run the multiplyable service with the 'all_names' target: "
-    "bazel build product/multiplyable_service:all_names --platforms=//configs/platforms:ProjectA")
+    "bazel build product/multiplyable_service:all_names --platforms=//configs/platforms:ProjectA"
+    "Run the multiplyable service with the 'all_names' target for project C: "
+    "bazel build product/multiplyable_service:all_names --platforms=//configs/platforms:ProjectC"
+    )
 
 for ((i=0; i<${#entries[@]}; i+=2)); do
     echo "${entries[i]}"

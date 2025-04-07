@@ -90,7 +90,7 @@ We can then utilize the custom `multiply_rule` macro to duplicate a given rule a
 
 To test this out in this workspace use any of the following commands:
 
-`bazel build product/multiplyable_service:only_carnivorea --platforms=//configs/platforms:ProjectA`
+`bazel build product/multiplyable_service:only_carnivores --platforms=//configs/platforms:ProjectA`
 
 `bazel build product/multiplyable_service:all_animals --platforms=//configs/platforms:ProjectA`
 

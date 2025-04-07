@@ -13,7 +13,7 @@ multiply_existing_target(
 )
 
 multiply_existing_target(
-    name = "only_carnivorea",
+    name = "only_carnivores",
     conditions = [
         {
             "type": "carnivore",
