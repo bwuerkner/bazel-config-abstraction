@@ -19,7 +19,7 @@ It could even happen that the project decides to write it's own transformer from
 
 Now since we have multiple projects using different subsets of services the different projects also want to structure the output differently.
 This can be achieved using the excellent `rules_pkg` with `pkg_files` and `pkg_filegroup`.
-This is already outlined in the [examples provided by the package](examples/rich_structure/README.md).
+This is already outlined in the [examples provided by the package](https://github.com/bazelbuild/rules_pkg/tree/main/examples/rich_structure/README.md).
 
 In this repository I've opted to create a small example that fits within the rest of the examples.
 
